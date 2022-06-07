@@ -1,8 +1,8 @@
 import { getAllMediaPerUser, getOnePieceOfMedia } from "../../services/mediaServices.js";
 
 export default async ({ params, response }) => {
-    const tokenId = params.id;
-  
+    console.log(params)
+    const tokenId = parseInt(params.tokenid);
     if (!tokenId) {
       response.status = 400;
       response.body = { msg: "Invalid user id", success: false };

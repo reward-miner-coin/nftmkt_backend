@@ -27,7 +27,7 @@ router
   .put("/api/users/update/:id", updateUser)
   .delete("/api/users/delete/:id", deleteUser)
   //media
-  .get("/api/media/get/:mediaId", getOnePiece)
+  .get("/api/media/get/:address/:tokenid", getOnePiece)
   .get("/api/media/getall", getAllMedia)
   .get("/api/media/getshowcase", getShowcase)
   .get("/api/media/user/:address", getAllMediaPerUser)

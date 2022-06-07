@@ -38,21 +38,8 @@ class MediaQueries {
 
   selectAll() {
     return client.queryArray(`
-    SELECT 
-      media_id,
-      address,
-      title,
-      description,
-      price,
-      media_url,
-      metadata_url,
-      mimetype,
-      contenthash,
-      metadatahash,
-      tokenid::text,
-      chainid
-    FROM media 
-    ORDER BY price`);
+    SELECT *
+    FROM allnftsmedia`);
   }
   selectAllForUser(address) {
     return client.queryObject("SELECT * FROM media WHERE address = $1 ORDER BY address", [address]);

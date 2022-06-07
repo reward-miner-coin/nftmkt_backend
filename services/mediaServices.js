@@ -8,6 +8,8 @@ export const getOnePieceOfMedia = async (tokenId) => {
       result = media;
     });
 
+    result["tokenid"] = result.tokenid.toString();
+
     return result;
 };
 export const createMedia = async (media) => {
