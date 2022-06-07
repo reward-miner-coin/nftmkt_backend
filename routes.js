@@ -10,6 +10,7 @@ import getAllMedia from './controllers/media/getAllMedia.js';
 import getAllMediaPerUser from './controllers/media/getAllMediaPerUser.js';
 import getOnePiece from './controllers/media/getOnePiece.js';
 import setAsk from './controllers/media/setAsk.js';
+import getShowcase from "./controllers/media/getShowcase.js";
 /* Bid Routes */
 import createBid from './controllers/bids/createBid.js';
 import acceptBid from './controllers/bids/acceptBid.js';
@@ -28,6 +29,7 @@ router
   //media
   .get("/api/media/get/:mediaId", getOnePiece)
   .get("/api/media/getall", getAllMedia)
+  .get("/api/media/getshowcase", getShowcase)
   .get("/api/media/user/:address", getAllMediaPerUser)
   .post("/api/media/create", createMedia)
   .put("/api/media/ask/:mediaId", setAsk)

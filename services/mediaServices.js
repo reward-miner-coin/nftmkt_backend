@@ -24,10 +24,7 @@ export const createMedia = async (media) => {
       tokenId: media.tokenId,
       chainId: media.chainId,
     };
-  
-    let newCreatedMedia = await mediaQueries.create(newMedia);
-  
-    return newCreatedMedia._id;
+    await mediaQueries.create(newMedia);
 };
 export const setAsk = async (mediaId, media) => {
     const mediaPreviousData = await getMedia(mediaId);
@@ -52,6 +49,20 @@ export const getAllMedia = async () => {
     result.push(obj);
   });
 
+  return result;
+};
+export const getShowcase = async () => {
+  const medias = await mediaQueries.selectForShowcase(); 
+  
+  var result = new Array();
+  medias.rows.map((media) => {
+    var obj = new Object();
+
+    medias.rowDescription.columns.map((el, i) => {
+      obj[el.name] = media[i];
+    });
+    result.push(obj);
+  });
   return result;
 };
 export const getAllMediaPerUser = async (address) => {

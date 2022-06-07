@@ -9,7 +9,6 @@ export default async ({ request, response }) => {
     }
   
     const media = await request.body().value;
-  
     //console.log(await request.body({ type: "json" }).value);
     //console.log(name);
   
@@ -20,5 +19,5 @@ export default async ({ request, response }) => {
     }*/
   
     await createMedia(media);
-    response.body = { msg: "Media created", success: true };
+    response.body = { msg: "Media created", success: true, message: true };
   };

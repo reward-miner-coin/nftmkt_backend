@@ -2,8 +2,6 @@ import { createUser, getUser } from "../../services/userServices.js";
 
 
 export default async ({ request, response }) => {
-  console.log(request);
-  console.log(await request.body().value);
     if (!request.hasBody) {
       response.status = 400;
       response.body = { msg: "Invalid user data", success: false, message: true };

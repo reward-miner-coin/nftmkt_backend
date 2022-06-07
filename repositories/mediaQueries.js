@@ -2,6 +2,7 @@ import client from "../db/db.js";
 
 class MediaQueries {
   create(media) {
+    try{
       return client.queryObject(
         `INSERT INTO MEDIA (
             address, 
@@ -21,7 +22,7 @@ class MediaQueries {
           media.title,
           media.description,
           media.price,
-          media.medial_url,
+          media.media_url,
           media.metadata_url,
           media.mimeType,
           media.contentHash,
@@ -30,10 +31,28 @@ class MediaQueries {
           media.chainId
         ]
       );
+    } catch (e) {
+      //console.log(e);
+    }
   }
 
   selectAll() {
-    return client.queryArray("SELECT * FROM media ORDER BY address");
+    return client.queryArray(`
+    SELECT 
+      media_id,
+      address,
+      title,
+      description,
+      price,
+      media_url,
+      metadata_url,
+      mimetype,
+      contenthash,
+      metadatahash,
+      tokenid::text,
+      chainid
+    FROM media 
+    ORDER BY price`);
   }
   selectAllForUser(address) {
     return client.queryObject("SELECT * FROM media WHERE address = $1 ORDER BY address", [address]);
@@ -41,6 +60,10 @@ class MediaQueries {
 
   selectById(tokenId) {
     return client.queryObject(`SELECT * FROM media WHERE tokenId = $1`, [tokenId]);
+  }
+
+  selectForShowcase() {
+    return client.queryArray(`SELECT * FROM nftshowcase`);
   }
 
   async setAsk(id, media) {
