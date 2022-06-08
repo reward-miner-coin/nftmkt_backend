@@ -14,14 +14,20 @@ class UserQueries {
   }
 
   selectAllBidsForMedia(mediaId) {
-    return client.queryArray("SELECT * FROM bids where mediaid = $1", [mediaId]);
+    return client.queryArray(`
+      SELECT b.*, a.username as bidder_username, a.avatar as bidder_avatar
+      FROM bids as b 
+      left join (select address, username, avatar from users) as a 
+      on b.bidder = a.address
+      where b.mediaid = $1`, 
+     [mediaId]);
   }
 
   selectAllBidsFromUser(address) {
     return client.queryObject(`SELECT * FROM bids WHERE bidder = $1`, [address]);
   }
   selectCurrentBidForUserAndMedia(address, tokenid){
-    return client.queryObject(`SELECT * FROM bids WHERE bidder = $1 and mediaid = $2 and history = false`, [address, tokenid]);
+    return client.queryArray(`SELECT * FROM bids WHERE bidder = $1 and mediaid = $2 and history = false`, [address, tokenid]);
   }
   async updateBid(address, tokenid) {
     var query = `UPDATE bids 

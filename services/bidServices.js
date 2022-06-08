@@ -1,7 +1,7 @@
 import bidQueries from "../repositories/bidQueries.js";
 
 export const getBids = async (mediaId) => {
-    const mediaBids = await bidQueries.selectAllBidsForMedia(mediaId);  
+    const mediaBids = await bidQueries.selectAllBidsForMedia(mediaId); 
     var result = new Array();
 
     mediaBids.rows.map((bid) => {
@@ -28,9 +28,21 @@ export const createBid = async (bid) => {
   
     await bidQueries.create(newBid);
     const freshBid = await bidQueries.selectCurrentBidForUserAndMedia(bid.bidder, bid.mediaId);
-    //console.log(newSubmittedBid);
-    //console.log(newSubmittedBid._id);
-    return freshBid;
+
+    var result = new Array();
+
+    freshBid.rows.map((bid_x) => {
+      var obj = new Object();
+  
+      freshBid.rowDescription.columns.map((el, i) => {
+        obj[el.name] = bid_x[i];
+      });
+
+      result.push(obj);
+
+    });
+  
+    return result[0];
 };
 
 export const getBidsForUser = async (address) => {
