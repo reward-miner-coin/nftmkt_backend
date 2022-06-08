@@ -3,11 +3,12 @@ import client from "../db/db.js";
 class UserQueries {
   create(bid) {
       return client.queryObject(
-        "INSERT INTO BIDS (mediaId, bidder, price) VALUES ($1, $2, $3);",
+        "INSERT INTO BIDS (mediaId, bidder, price, type) VALUES ($1, $2, $3, $4);",
         [
           bid.mediaId,
           bid.bidder,
-          bid.price
+          bid.price,
+          bid.type
       ]
       );
   }

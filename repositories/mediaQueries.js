@@ -46,7 +46,14 @@ class MediaQueries {
   }
 
   selectById(tokenId) {
-    return client.queryObject(`SELECT * FROM media WHERE tokenId = $1`, [tokenId]);
+    return client.queryObject(`
+    select c.*, d.username as owner_username, d.avatar as owner_avatar from
+	  (SELECT a.*, b.username as creator_username, b.avatar as creator_avatar
+      FROM media as a left join (select address, username, avatar from users) as b on
+      a.address = b.address
+      WHERE a.tokenId = $1) as c left join (select address, username, avatar from users) as d
+	  on c.current_owner = d.address
+      `, [tokenId]);
   }
 
   selectForShowcase() {

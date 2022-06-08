@@ -21,7 +21,8 @@ export const createBid = async (bid) => {
     const newBid = {
       mediaId: String(bid.mediaId),
       bidder: String(bid.bidder),
-      price: bid.price
+      price: bid.price,
+      type: bid.type
     };
   
     let newSubmittedBid = await bidQueries.create(newBid);
