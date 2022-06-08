@@ -1,7 +1,6 @@
 import { getAllMediaPerUser, getOnePieceOfMedia } from "../../services/mediaServices.js";
 
 export default async ({ params, response }) => {
-    console.log(params)
     const tokenId = parseInt(params.tokenid);
     if (!tokenId) {
       response.status = 400;

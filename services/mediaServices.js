@@ -9,7 +9,6 @@ export const getOnePieceOfMedia = async (tokenId) => {
     });
 
     result["tokenid"] = result.tokenid.toString();
-
     return result;
 };
 export const createMedia = async (media) => {
@@ -29,8 +28,7 @@ export const createMedia = async (media) => {
     await mediaQueries.create(newMedia);
 };
 export const setAsk = async (mediaId, media) => {
-    const mediaPreviousData = await getMedia(mediaId);
-    //console.log(userPreviousData)
+    const mediaPreviousData = await getOnePieceOfMedia(mediaId);
     if (Object.keys(mediaPreviousData).length === 0 && mediaPreviousData.constructor === Object) {
       throw new Error("User not found");
     }

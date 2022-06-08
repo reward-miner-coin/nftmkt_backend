@@ -60,7 +60,7 @@ class MediaQueries {
     return client.queryArray(`SELECT * FROM nftshowcase`);
   }
 
-  async setAsk(id, media) {
+  async setAsk(id, price) {
     var previousMedia = await this.selectById(id);
     //console.log(previousUserdata);
 
@@ -78,7 +78,7 @@ class MediaQueries {
     
     return client.queryObject(
       query,
-      [user.username !== undefined ? media.price : result.price,
+      [price !== undefined ? price : result.price,
       id]
     );
   }
