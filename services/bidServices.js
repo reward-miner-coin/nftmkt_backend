@@ -18,6 +18,7 @@ export const getBids = async (mediaId) => {
 };
 
 export const createBid = async (bid) => {
+    await bidQueries.updateBid(bid.bidder, bid.mediaId);
     const newBid = {
       mediaId: String(bid.mediaId),
       bidder: String(bid.bidder),
