@@ -2,7 +2,7 @@
 
 -- DROP VIEW public.nftshowcase;
 
-CREATE OR REPLACE VIEW public.nftshowcase
+CREATE OR REPLACE VIEW public.allnftsmedia
  AS
  SELECT a.media_id,
     a.address,
@@ -15,8 +15,8 @@ CREATE OR REPLACE VIEW public.nftshowcase
     a.contenthash,
     a.metadatahash,
     a.tokenid,
-    a.created_at,
     a.chainid,
+    a.created_at,
     b.address2,
     b.username,
     b.avatar
@@ -34,8 +34,7 @@ CREATE OR REPLACE VIEW public.nftshowcase
             media.chainid,
             media.created_at
            FROM media
-          ORDER BY media.price DESC
-         LIMIT 7) a
+          ORDER BY media.price DESC) a
      LEFT JOIN ( SELECT users.address AS address2,
             users.username,
             users.avatar
