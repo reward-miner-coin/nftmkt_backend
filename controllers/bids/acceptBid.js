@@ -1,6 +1,6 @@
 import { acceptBid } from "../../services/bidServices.js";
 
-export default async ({ params, response }) => {
+export default async ({ params, request, response }) => {
     const bidId = params.bidId;
 
     if (!bidId) {
@@ -9,7 +9,10 @@ export default async ({ params, response }) => {
       return;
     }
 
-    await acceptBid(bidId);
+
+    const bid = await request.body().value;
+
+    await acceptBid(bidId, bid);
 
     response.body = { msg: "Bid accepted", success: true };
 };

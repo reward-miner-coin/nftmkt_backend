@@ -48,7 +48,8 @@ export const getBidsForUser = async (address) => {
   });
 };
 
-export const acceptBid = async (bidId) => {
+export const acceptBid = async (bidId, bid) => {
   await bidQueries.acceptBid(bidId);
+  await bidQueries.updateMediaOwner(bid.bidder, bid.mediaId);
 };
 

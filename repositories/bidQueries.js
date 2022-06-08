@@ -39,6 +39,21 @@ class UserQueries {
     );
   }
 
+  async updateMediaOwner(address, mediaid) {
+    var query = `UPDATE media 
+      SET 
+          current_owner = $1
+          WHERE tokenid = $2
+      `;
+    return client.queryObject(
+      query,
+      [
+        address,
+        parseInt(mediaid)
+      ]
+    );
+  }
+
   async acceptBid(bidId) {
     var query = `UPDATE bids 
       SET 
