@@ -13,8 +13,8 @@ export const getBids = async (mediaId) => {
 
       result.push(obj);
 
-      return result;
     });
+    return result;
 };
 
 export const createBid = async (bid) => {

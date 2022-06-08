@@ -14,7 +14,7 @@ class UserQueries {
   }
 
   selectAllBidsForMedia(mediaId) {
-    return client.queryObject("SELECT * FROM bids where mediaId = $1", [mediaId]);
+    return client.queryArray("SELECT * FROM bids where mediaid = $1", [mediaId]);
   }
 
   selectAllBidsFromUser(address) {
