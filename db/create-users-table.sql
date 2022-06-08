@@ -7,5 +7,6 @@ CREATE TABLE IF NOT EXISTS users (
     site text,
 	twitter text,
 	instagram text,
-    avatar text
+    avatar text,
+    created_at timestamp default current_timestamp
 )

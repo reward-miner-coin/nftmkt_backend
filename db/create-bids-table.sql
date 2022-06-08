@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS bids (
 	bidder VARCHAR(42) NOT NULL,
     price double precision NOT NULL,
 	accepted bool DEFAULT false,
-	type bool NOT NULL
+	type bool NOT NULL,
+	created_at timestamp default current_timestamp
 )

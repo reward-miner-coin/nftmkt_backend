@@ -11,5 +11,6 @@ CREATE TABLE IF NOT EXISTS media (
     metadataHash text NOT NULL,
 	tokenId bigint NOT NULL,
 	chainId serial NOT NULL,
+	created_at timestamp default current_timestamp,
 	UNIQUE (tokenId)
 )
