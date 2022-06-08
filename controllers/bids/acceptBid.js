@@ -11,8 +11,6 @@ export default async ({ params, request, response }) => {
 
 
     const bid = await request.body().value;
-
     await acceptBid(bidId, bid);
-
     response.body = { msg: "Bid accepted", success: true };
 };

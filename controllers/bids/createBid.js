@@ -19,6 +19,6 @@ export default async ({ request, response }) => {
       return;
     }*/
   
-    await createBid(bid);
-    response.body = { msg: "Bid created", success: true };
+    const retData = await createBid(bid);
+    response.body = { msg: "Bid created", success: true, data: retData };
   };

@@ -42,6 +42,7 @@ class UserQueries {
   async updateMediaOwner(address, mediaid) {
     var query = `UPDATE media 
       SET 
+          price = 0,
           current_owner = $1
           WHERE tokenid = $2
       `;
@@ -57,13 +58,15 @@ class UserQueries {
   async acceptBid(bidId) {
     var query = `UPDATE bids 
       SET 
-          accepted = $1
-          WHERE bidId = $2
+          accepted = $1,
+          history = $2
+          WHERE bidId = $3
       `;
     
     return client.queryObject(
       query,
       [
+        true,
         true,
         bidId
       ]

@@ -26,9 +26,11 @@ export const createBid = async (bid) => {
       type: bid.type
     };
   
-    let newSubmittedBid = await bidQueries.create(newBid);
-  
-    return newSubmittedBid._id;
+    await bidQueries.create(newBid);
+    const freshBid = await bidQueries.selectCurrentBidForUserAndMedia(bid.bidder, bid.mediaId);
+    //console.log(newSubmittedBid);
+    //console.log(newSubmittedBid._id);
+    return freshBid;
 };
 
 export const getBidsForUser = async (address) => {
