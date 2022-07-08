@@ -16,11 +16,22 @@ import createBid from './controllers/bids/createBid.js';
 import acceptBid from './controllers/bids/acceptBid.js';
 import getBids from './controllers/bids/getBids.js';
 import getUserBids from './controllers/bids/getUserBids.js';
-
+/* Auth */
+import nonce from './controllers/auth/nonce.js';
+import verify from './controllers/auth/verify.js';
+/* Collections */
+import getallcollections from "./controllers/collections/getallcollections.js";
+import getsinglecollection from "./controllers/collections/getsinglecollection.js";
 
 const router = new Router();
 
 router
+
+  //auth 
+  .get("/api/auth/nonce/:address", nonce)
+  //collections
+  .get("/api/collections/all", getallcollections)
+  .get("/api/collection/:name", getsinglecollection)
   //user
   .get("/api/users/get/:id", getUser)
   .post("/api/users/create", createUser)
