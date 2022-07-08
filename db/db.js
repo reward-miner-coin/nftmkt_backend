@@ -12,8 +12,8 @@ class Database {
    this.client = new Client({
       user: Deno.env.get("DATABASE_USER") || "postgres",
       database: Deno.env.get("DATABASE_NAME") || "postgres",
-      hostname: Deno.env.get("DATABASE_HOSTNAME") || "db.jddfsoobopwqcuvjbmgt.supabase.co",
-      password: Deno.env.get("DATABASE_PASSWORD") || "r3w4rdm!n3r2022",
+      hostname: Deno.env.get("DATABASE_HOSTNAME") || "",
+      password: Deno.env.get("DATABASE_PASSWORD") || "",
       port: Deno.env.get("DATABASE_PORT") || 6543
     });
     await this.client.connect();
