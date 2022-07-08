@@ -7,7 +7,8 @@ import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
 app.use(oakCors({
-    origin: "*"
+    origin: "*",
+    credentials: true
 }));
 app.use(errorHandler);
 app.use(router.routes());
