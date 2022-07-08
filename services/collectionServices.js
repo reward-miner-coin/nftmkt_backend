@@ -8,7 +8,7 @@ export const GetASingleCollection = async (name) => {
     if(Object.keys(response).length > 0){
         formattedResponse = {};
         for(let i = 0; i < Object.keys(response).length; i++){
-            if(response[Object.keys(response)[i]] !== null){
+            if(response[Object.keys(response)[i]] !== null && Object.keys(response)[i] !== 'collection_metadata'){
                 if(Object.keys(response)[i].slice(0,6) === 'social'){
                     socials[Object.keys(response)[i]] = response[Object.keys(response)[i]]
                     //console.log(response[Object.keys(response)[i]]);
@@ -32,7 +32,7 @@ export const GetAllCollections = async () => {
         for(let y = 0; y < response.length; y++){
             formattedResponse = {};
             for(let i = 0; i < Object.keys(response[y]).length; i++){
-                if(response[y][Object.keys(response[y])[i]] !== null){
+                if(response[y][Object.keys(response[y])[i]] !== null && Object.keys(response[y])[i] !== 'collection_metadata'){
                     formattedResponse[Object.keys(response[y])[i]] = response[y][Object.keys(response[y])[i]];
                 }
             }
