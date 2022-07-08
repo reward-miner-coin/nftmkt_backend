@@ -6,9 +6,8 @@ import _404 from "./controllers/404.js";
 import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
-app.use(oakCors({
-    origin: '*'}
-    ));
+/*app.use(oakCors(
+    ));*/
 app.use(errorHandler);
 app.use(router.routes());
 app.use(router.allowedMethods());
