@@ -10,7 +10,7 @@ const app = new Application();
 app.use(oakCors({
     origin: false
 }));
-app.use(errorHandler);
+
 app.use(async (ctx, next) => {
  
     ctx.response.headers.set('Access-Control-Allow-Origin', '*');
@@ -20,7 +20,7 @@ app.use(async (ctx, next) => {
 
     console.log(ctx.response);
 });
-
+app.use(errorHandler);
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(_404);
