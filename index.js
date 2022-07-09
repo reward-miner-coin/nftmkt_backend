@@ -7,10 +7,7 @@ import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
 
-app.use(oakCors({
-    origin: "*",
-    credentials: true,
-}));
+
 
 app.use(async (ctx, next) => {
     /*const cookie = getCookies(ctx.request.headers);
@@ -23,6 +20,10 @@ app.use(async (ctx, next) => {
     ctx.response.headers.set('Access-Control-Allow-Origin', '*');
 });
 app.use(errorHandler);
+app.use(oakCors({
+    origin: "*",
+    optionsSuccessStatus: 200,
+}));
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(_404);
