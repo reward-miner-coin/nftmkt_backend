@@ -14,10 +14,10 @@ app.use(async (ctx, next) => {
     if(Object.keys(cookie).length > 0){
         val = await decryptToken(cookie['seedsterio']);
     }*/
-    console.log(ctx.response);
-    ctx.set('Access-Control-Allow-Origin', '*');
-    ctx.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    ctx.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    
+    ctx.response.headers.set('Access-Control-Allow-Origin', '*');
+    //ctx.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    ctx.response.headers.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
     //console.log('hello');
     
     await next();  
