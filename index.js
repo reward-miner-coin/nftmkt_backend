@@ -9,6 +9,12 @@ const app = new Application();
 
 
 
+
+app.use(errorHandler);
+app.use(oakCors({
+    origin: "*",
+    optionsSuccessStatus: 200,
+}));
 app.use(async (ctx, next) => {
     /*const cookie = getCookies(ctx.request.headers);
     let val = {};
@@ -23,11 +29,6 @@ app.use(async (ctx, next) => {
     ctx.response.headers.set('access-control-allow-origin', '*');
     console.log(ctx.response);
 });
-app.use(errorHandler);
-app.use(oakCors({
-    origin: "*",
-    optionsSuccessStatus: 200,
-}));
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(_404);
