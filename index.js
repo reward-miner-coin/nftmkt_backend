@@ -8,6 +8,9 @@ import errorHandler from "./controllers/errorHandler.js";
 const app = new Application();
 
 app.use(errorHandler);
+app.use(oakCors({
+    origin: "*"
+}));
 app.use(async (ctx, next) => {
     /*const cookie = getCookies(ctx.request.headers);
     let val = {};
@@ -24,9 +27,7 @@ app.use(async (ctx, next) => {
 
     //console.log(ctx);
 });
-app.use(oakCors({
-    origin: "*"
-}));
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(_404);
