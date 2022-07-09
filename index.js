@@ -6,7 +6,7 @@ import _404 from "./controllers/404.js";
 import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
-app.use(errorHandler);
+
 app.use(oakCors({
     origin: false
 }));
@@ -18,7 +18,7 @@ app.use(async (ctx, next) => {
     ctx.response.headers.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
     await next();  
 
-    //console.log(ctx);
+    console.log(ctx.response);
 });
 
 app.use(router.routes());
