@@ -12,8 +12,7 @@ const app = new Application();
 
 app.use(errorHandler);
 app.use(oakCors({
-    origin: "*",
-    optionsSuccessStatus: 200,
+    origin: "*"
 }));
 app.use(async (ctx, next) => {
     /*const cookie = getCookies(ctx.request.headers);
