@@ -7,14 +7,12 @@ import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
 app.use(oakCors({
-    origin: ["https://nftmarket.rewardminer.io", "http://nftmarket.rewardminer.io", "nftmarket.rewardminer.io", "http://127.0.0.1:3000", "http://localhost:3000"],
-    credentials: true,
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    origin: "*"
 }));
 app.use((ctx, next) => {
     ctx.response.headers.set('Access-Control-Allow-Origin', '*')
     return next()
-  })
+})
 app.use(errorHandler);
 app.use(router.routes());
 app.use(router.allowedMethods());
