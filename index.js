@@ -15,13 +15,14 @@ app.use(async (ctx, next) => {
     if(Object.keys(cookie).length > 0){
         val = await decryptToken(cookie['seedsterio']);
     }*/
-    ctx.response.headers.set('Access-Control-Allow-Origin', '*');
+    ctx.response.headers.set('access-control-allow-origin', '*');
     await next();  
-    ctx.response.headers.set('Access-Control-Allow-Origin', '*');
+    ctx.response.headers.set('access-control-allow-origin', '*');
+    console.log(response);
 });
 app.use(errorHandler);
 app.use(oakCors({
-    origin: ['http://localhost:3000'],
+    origin: "*",
     optionsSuccessStatus: 200,
 }));
 app.use(router.routes());
