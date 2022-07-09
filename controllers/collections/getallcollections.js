@@ -2,6 +2,9 @@ import { GetAllCollections } from "../../services/collectionServices.js";
 
 export default async ({ request, response }) => {
     const collections = await GetAllCollections();
+    response.headers ={
+        "Access-Control-Allow-Origin": "*"
+    }
 
     if(collections.length > 0){
         response.body = { msg: `Collections retrieved`, data: collections, success: true};
