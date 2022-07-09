@@ -18,7 +18,7 @@ app.use(async (ctx, next) => {
     ctx.response.headers.set('access-control-allow-origin', '*');
     await next();  
     ctx.response.headers.set('access-control-allow-origin', '*');
-    console.log(response);
+    console.log(ctx.response);
 });
 app.use(errorHandler);
 app.use(oakCors({
