@@ -11,7 +11,7 @@ const app = new Application();
 app.use(oakCors({
     origin: "*"
 }));
-
+app.use(errorHandler);
 app.use(async (ctx, next) => {
     /*const cookie = getCookies(ctx.request.headers);
     let val = {};
@@ -28,7 +28,7 @@ app.use(async (ctx, next) => {
     //console.log(ctx);
 });
 app.use(router.routes());
-//app.use(router.allowedMethods());
+app.use(router.allowedMethods());
 app.use(_404);
 
 
