@@ -15,7 +15,7 @@ class Database {
       hostname: Deno.env.get("DATABASE_HOSTNAME") || "",
       password: Deno.env.get("DATABASE_PASSWORD") || "",
       port: Deno.env.get("DATABASE_PORT") || 6543,
-      tls: { caCertificates: [cert] }
+      tls: { enforce: false }
     }, 3, true);
     await this.client.connect();
   }
