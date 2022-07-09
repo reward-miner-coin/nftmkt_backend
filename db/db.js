@@ -1,5 +1,8 @@
 import { Client } from "https://deno.land/x/postgres/mod.ts";
 
+const cert = await Deno.readTextFile(
+  new URL("./c.crt", import.meta.url),
+);
 class Database {
   constructor() {
     this.connect();
@@ -12,14 +15,7 @@ class Database {
       hostname: Deno.env.get("DATABASE_HOSTNAME") || "",
       password: Deno.env.get("DATABASE_PASSWORD") || "",
       port: Deno.env.get("DATABASE_PORT") || 6543,
-      tls: {
-        caCertificates: [
-          await Deno.readTextFile(
-            new URL("./c.crt", import.meta.url),
-          ),
-        ],
-        enabled: true,
-      },
+      tls: { caCertificates: [cert] }
     });
     await this.client.connect();
   }
