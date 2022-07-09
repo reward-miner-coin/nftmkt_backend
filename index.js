@@ -17,6 +17,7 @@ app.use(async (ctx, next) => {
     }*/
     ctx.response.headers.set('access-control-allow-origin', '*');
     await next();  
+    console.log(ctx);
     ctx.response.headers.set('access-control-allow-origin', '*');
     console.log(ctx.response);
 });
