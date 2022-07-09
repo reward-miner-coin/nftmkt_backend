@@ -7,8 +7,8 @@ import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
 app.use(oakCors({
-    origin: ["https://nftmarket.rewardminer.io", "http://nftmarket.rewardminer.io", "nftmarket.rewardminer.io", "http://localhost:3000"],
-    credentials: true
+    origin: false
+    
 }));
 app.use(errorHandler);
 app.use(router.routes());
