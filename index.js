@@ -8,8 +8,9 @@ import errorHandler from "./controllers/errorHandler.js";
 const app = new Application();
 app.use(oakCors({
     "origin": "*",
-    "credentials": true,
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204
 }));
 app.use(errorHandler);
 app.use(router.routes());
