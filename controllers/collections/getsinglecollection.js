@@ -1,9 +1,6 @@
 import { GetASingleCollection } from "../../services/collectionServices.js";
 export default async ({ params, response }) => {
     const name = params.name;
-    response.headers ={
-      "Access-Control-Allow-Origin": "*"
-    }
 
     if (!name) {
         response.status = 400;
