@@ -1,4 +1,4 @@
-import { Client } from "https://deno.land/x/postgres/mod.ts";
+import { Client, Pool } from "https://deno.land/x/postgres/mod.ts";
 
 const cert = await Deno.readTextFile(
   new URL("./c.crt", import.meta.url),
@@ -9,7 +9,7 @@ class Database {
   }
 
   async connect() {
-   this.client = new Client({
+   this.client = new Pool({
       user: Deno.env.get("DATABASE_USER") || "postgres",
       database: Deno.env.get("DATABASE_NAME") || "postgres",
       hostname: Deno.env.get("DATABASE_HOSTNAME") || "",
