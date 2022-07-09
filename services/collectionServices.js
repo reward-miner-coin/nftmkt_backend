@@ -49,9 +49,9 @@ export const GetAllCollections = async () => {
 
 export const GetEvents = async () => {
     let purchased = [];
-    const provider = new ethers.providers.JsonRpcProvider('https://speedy-nodes-nyc.moralis.io/71e52ba32baa131ac3bfefe1/bsc/testnet');
+    const provider = new ethers.providers.JsonRpcProvider('https://speedy-nodes-nyc.moralis.io/71e52ba32baa131ac3bfefe1/bsc/mainnet');
     const contract = new ethers.Contract(
-        '0x296De5fb6bfDA54F8Bc43ACEA41BF7a4047508cB',
+        '0xB815771Cd664b9fbaC56ab1E1Ba8fbca9C215a4b',
         nft,
         provider
     );
