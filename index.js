@@ -21,7 +21,7 @@ app.use(async (ctx, next) => {
 });
 app.use(errorHandler);
 app.use(oakCors({
-    origin: 'http://localhost:3000',
+    origin: ['http://localhost:3000'],
     optionsSuccessStatus: 200,
 }));
 app.use(router.routes());
