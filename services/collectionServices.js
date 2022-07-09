@@ -49,16 +49,22 @@ export const GetAllCollections = async () => {
 
 export const GetEvents = async () => {
     let purchased = [];
-    const provider = new ethers.providers.JsonRpcProvider('https://speedy-nodes-nyc.moralis.io/71e52ba32baa131ac3bfefe1/bsc/mainnet');
+    const provider = new ethers.providers.JsonRpcProvider('https://bsc-dataseed3.binance.org');
     const contract = new ethers.Contract(
         '0xB815771Cd664b9fbaC56ab1E1Ba8fbca9C215a4b',
         nft,
         provider
     );
     const Block = await provider.getBlockNumber();
+    console.log(Block);
     let eventFilter = contract.filters.C4N5Activated();
-    let events = await contract.queryFilter(eventFilter);
+    let events = await contract.queryFilter(eventFilter , Block - 5000, Block);
+    console.log(events);
+    if(events.length > 0) {
+        events.map((item) => purchased.push(item.args[1].toString()));
+        return purchased;
+    } else {
+        return [];
+    }
 
-    events.map((item) => purchased.push(item.args[1].toString()));
-    return purchased;
 } 
