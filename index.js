@@ -7,7 +7,7 @@ import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
 
-app.use(errorHandler);
+
 app.use(oakCors({
     origin: "*"
 }));
@@ -28,6 +28,7 @@ app.use(async (ctx, next) => {
 });
 app.use(router.routes());
 app.use(router.allowedMethods());
+app.use(errorHandler);
 app.use(_404);
 
 
