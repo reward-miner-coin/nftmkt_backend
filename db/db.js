@@ -1,8 +1,5 @@
 import { Client } from "https://deno.land/x/postgres/mod.ts";
 
-console.log(Deno.env.toObject());
-
-
 class Database {
   constructor() {
     this.connect();

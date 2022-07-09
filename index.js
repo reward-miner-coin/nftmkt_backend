@@ -16,6 +16,7 @@ app.use(async (ctx, next) => {
         val = await decryptToken(cookie['seedsterio']);
     }*/
     ctx.response.headers.set('access-control-allow-origin', '*');
+    console.log('hello');
     await next();  
     console.log(ctx);
     ctx.response.headers.set('access-control-allow-origin', '*');
