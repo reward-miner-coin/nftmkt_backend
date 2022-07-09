@@ -20,11 +20,12 @@ app.use(async (ctx, next) => {
     //console.log('hello');
     console.log(ctx.response);
     await next();  
-    ctx.response.headers.set('Access-Control-Allow-Origin', '*');
-    ctx.response.headers.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    ctx.response.headers.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+
     //console.log(ctx);
 });
+app.use(oakCors({
+    origin: "*"
+}));
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(_404);
