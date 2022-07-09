@@ -10,12 +10,12 @@ const app = new Application();
 app.use(oakCors({
     origin: false
 }));
-
+app.use(errorHandler);
 app.use(async (ctx, next) => {
  
     ctx.response.headers.set('Access-Control-Allow-Origin', '*');
     //ctx.response.headers.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    ctx.response.headers.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    //ctx.response.headers.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
     await next();  
 
     console.log(ctx.response);
