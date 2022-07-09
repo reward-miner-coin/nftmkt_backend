@@ -6,14 +6,15 @@ import _404 from "./controllers/404.js";
 import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
+
+app.use(errorHandler);
+app.use(router.routes());
 app.use(oakCors({
     "origin": "*",
     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
     "preflightContinue": false,
     "optionsSuccessStatus": 204
 }));
-app.use(errorHandler);
-app.use(router.routes());
 app.use(router.allowedMethods());
 app.use(_404);
 
