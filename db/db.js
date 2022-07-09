@@ -14,7 +14,8 @@ class Database {
       database: Deno.env.get("DATABASE_NAME") || "postgres",
       hostname: Deno.env.get("DATABASE_HOSTNAME") || "",
       password: Deno.env.get("DATABASE_PASSWORD") || "",
-      port: Deno.env.get("DATABASE_PORT") || 6543
+      port: Deno.env.get("DATABASE_PORT") || 6543,
+      tls: { enforce: false }
     });
     await this.client.connect();
   }
