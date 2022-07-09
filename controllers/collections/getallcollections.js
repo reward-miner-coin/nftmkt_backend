@@ -1,6 +1,7 @@
 import { GetAllCollections } from "../../services/collectionServices.js";
 
 export default async ({ request, response }) => {
+    console.log(response);
     const collections = await GetAllCollections();
 
 
