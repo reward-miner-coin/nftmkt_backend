@@ -7,8 +7,6 @@ import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
 
-
-
 app.use(errorHandler);
 app.use(async (ctx, next) => {
     /*const cookie = getCookies(ctx.request.headers);
@@ -16,9 +14,9 @@ app.use(async (ctx, next) => {
     if(Object.keys(cookie).length > 0){
         val = await decryptToken(cookie['seedsterio']);
     }*/
-    ctx.response.headers.set('Access-Control-Allow-Origin', '*');
-    ctx.response.headers.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    ctx.response.headers.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
+    ctx.response.set('Access-Control-Allow-Origin', '*');
+    ctx.response.set('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    ctx.response.set('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS');
     //console.log('hello');
     //console.log(ctx);
     await next();  
