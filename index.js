@@ -7,13 +7,10 @@ import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
 
-
-
-
 app.use(errorHandler);
-app.use(oakCors({
+/*app.use(oakCors({
     origin: "*"
-}));
+}));*/
 app.use(async (ctx, next) => {
     /*const cookie = getCookies(ctx.request.headers);
     let val = {};
