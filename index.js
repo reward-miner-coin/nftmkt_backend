@@ -13,10 +13,10 @@ app.use(async (ctx, next) => {
     if(Object.keys(cookie).length > 0){
         val = await decryptToken(cookie['seedsterio']);
     }*/
-    ctx.response.headers.set('Access-Control-Allow-Origin', '*')
-    await next();
-    
-});;
+    ctx.response.headers.set('Access-Control-Allow-Origin', '*');
+    console.log(ctx.response);
+    await next();  
+});
 app.use(errorHandler);
 app.use(router.routes());
 app.use(router.allowedMethods());
