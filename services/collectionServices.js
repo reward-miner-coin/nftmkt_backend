@@ -1,5 +1,8 @@
+import { ethers } from "https://cdn.jsdelivr.net/npm/ethers@5.0.20/dist/ethers.esm.js";
 import collectionsQueries from "../repositories/collectionsQueries.js";
 import { returnedManyRows, returnedOneRow } from "./utils.js";
+import nft from "./nft.js";
+
 
 export const GetASingleCollection = async (name) => {
     const response = await returnedOneRow(await collectionsQueries.GetAlSingleCollection(name));
@@ -43,3 +46,19 @@ export const GetAllCollections = async () => {
         return [];
     }
 }
+
+export const GetEvents = async () => {
+    let purchased = [];
+    const provider = new ethers.providers.JsonRpcProvider('https://speedy-nodes-nyc.moralis.io/71e52ba32baa131ac3bfefe1/bsc/testnet');
+    const contract = new ethers.Contract(
+        '0x296De5fb6bfDA54F8Bc43ACEA41BF7a4047508cB',
+        nft,
+        provider
+    );
+    const Block = await provider.getBlockNumber();
+    let eventFilter = contract.filters.C4N5Activated();
+    let events = await contract.queryFilter(eventFilter);
+
+    events.map((item) => purchased.push(item.args[1].toString()));
+    return purchased;
+} 

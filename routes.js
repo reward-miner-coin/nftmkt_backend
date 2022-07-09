@@ -22,13 +22,15 @@ import verify from './controllers/auth/verify.js';
 /* Collections */
 import getallcollections from "./controllers/collections/getallcollections.js";
 import getsinglecollection from "./controllers/collections/getsinglecollection.js";
-
+import purchases from "./controllers/collections/purchases.js";
 const router = new Router();
 
 router
 
   //auth 
-  .get("/api/auth/nonce/:address", nonce)
+  //.get("/api/auth/nonce/:address", nonce)
+  .get("/api/purchases", purchases);
+  /*
   //collections
   .get("/api/collections/all", getallcollections)
   .get("/api/collection/:name", getsinglecollection)
@@ -49,5 +51,5 @@ router
   .get("/api/bids/user/:address", getUserBids)
   .post("/api/bids/create", createBid)
   .put("/api/bids/acceptbid/:bidId", acceptBid);
-
+*/
 export default router;
