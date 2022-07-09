@@ -11,12 +11,14 @@ class Database {
   async connect() {
    this.client = new Client({
       user: Deno.env.get("DATABASE_USER") || "postgres",
-      database: Deno.env.get("DATABASE_NAME") || "postgres",
-      hostname: Deno.env.get("DATABASE_HOSTNAME") || "",
-      password: Deno.env.get("DATABASE_PASSWORD") || "",
-      port: Deno.env.get("DATABASE_PORT") || 6543,
-      
-      transport: "tcp"
+      database: Deno.env.get("DATABASE_NAME") || "rmc",
+      hostname: Deno.env.get("DATABASE_HOSTNAME") || "127.0.0.1",
+      password: Deno.env.get("DATABASE_PASSWORD") || "postgres",
+      port: Deno.env.get("DATABASE_PORT") || 5432,
+      host_type: "tcp",
+      tls: {
+        enforce: false,
+      },
     });
     await this.client.connect();
   }
