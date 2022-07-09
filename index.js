@@ -7,15 +7,18 @@ import errorHandler from "./controllers/errorHandler.js";
 
 const app = new Application();
 
+app.use(oakCors({
+    "origin": "*"
+}));
+
 app.use(async (ctx, next) => {
     /*const cookie = getCookies(ctx.request.headers);
     let val = {};
     if(Object.keys(cookie).length > 0){
         val = await decryptToken(cookie['seedsterio']);
     }*/
-    ctx.response.headers.set('Access-Control-Allow-Origin', '*');
-    console.log(ctx.response);
     await next();  
+    ctx.response.headers.set('Access-Control-Allow-Origin', '*');
 });
 app.use(errorHandler);
 app.use(router.routes());
